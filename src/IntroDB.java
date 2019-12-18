@@ -53,7 +53,7 @@ public class IntroDB {
             // Requête en lecture
             resultSet = stmt.executeQuery("SELECT * FROM Membres");
 
-            // Affichage du resultat
+            // Affichage du résultat
             System.out.println("\nAffichage");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt(1) + " " + resultSet.getString("Nom"));
@@ -62,7 +62,7 @@ public class IntroDB {
             e.printStackTrace();
             System.out.println("ERROR DB : " + e.getMessage());
         } finally {
-            // Fermeture du resultat
+            // Fermeture du résultat
             if (resultSet != null) {
                 System.out.println("Fermeture du résultat");
                 try {
@@ -73,6 +73,19 @@ public class IntroDB {
                     e.printStackTrace();
                 }
             }
+
+            // Fermeture du PrepqredStatement
+            if (pstmt != null) {
+                System.out.println("Fermeture du Pstatement");
+                try {
+                    pstmt.close();
+                    System.out.println("PStatement fermé");
+                } catch (SQLException e) {
+                    System.out.println("Erreur à la fermeture du Pstatement");
+                    e.printStackTrace();
+                }
+            }
+
 
             // Fermeture du statement
             if (stmt != null) {
